@@ -1,0 +1,14 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  profiles:
+    group:
+      test: "test, h2"
+      local: "local, h2"
+      dev: "dev, mysql"
+    include:
+      - swagger
+      - oauth
+
+  application:
+    name: coff

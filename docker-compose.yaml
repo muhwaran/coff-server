@@ -1,0 +1,33 @@
+version: "3"
+services:
+  spring:
+    build: .
+    ports:
+      - "8080:8080"
+    container_name: "coff-server"
+    env_file:
+      - .env
+    depends_on:
+      coff_db:
+        condition: service_healthy
+    restart: always
+    networks:
+      - dev-net
+
+  coff_db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    container_name: "coff-db"
+    env_file:
+      - .env
+    healthcheck:
+      interval: 5s
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+    restart: always
+    networks:
+      - dev-net
+
+networks:
+  dev-net:
+    driver: bridge

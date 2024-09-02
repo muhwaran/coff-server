@@ -53,4 +53,5 @@ test {
 	useJUnitPlatform()
 	dependsOn 'checkstyleMain'
 	dependsOn 'checkstyleTest'
+	systemProperty 'spring.profiles.active', 'local,h2'
 }
