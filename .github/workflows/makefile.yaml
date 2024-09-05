@@ -56,4 +56,4 @@ jobs:
         run: make build
 
       - name: Run docker
-        run: make upi
+        run: make up
